@@ -4,30 +4,74 @@
 
 #include <iostream>
 
-// Struct to store data
-struct Node {
-	Node *next;
-	int data;
+class LinkedList {
+
+  // Struct to store data
+  struct Node {
+	 Node *next;
+	 int data;
+
+   Node() { next = NULL; data = 0; }
+  };
+
+  Node* head;
+
+  public:
+  // Constructor
+  LinkedList () { head->next = NULL; }
+
+  void insertNode (int);
+  void printList();
+  void deleteNode (int);
+
 };
 
-void insertNode (Node*, int&);
+void LinkedList::insertNode(int value) {
 
-void printList();
+  Node *newNode;
+  Node *nodePtr;
+  newNode = new Node;
+  newNode->data = value;
 
-void deleteNode (int&);
+  // Empty list condition
+  if(!head)
+    head = newNode;
 
+  // Else append node
+  else {
 
-int main () {
-	
-	Node* head = new Node;
+    nodePtr = head;
+    // Iterate through list
+    while(nodePtr->next)
+      nodePtr = nodePtr->next;
+    // Append node
+    nodePtr->next = newNode;
 
-	for (int iter = 0; iter < 10; ++iter) {
-		insertNode(head, iter);
-	}
-
-	return 0;
+  }
 }
 
-void insertNode (Node* head, int& value) {
+void LinkedList::printList() {
 
+  Node *nodePtr;
+  nodePtr = head;
+
+  while(nodePtr->next) {
+    nodePtr = nodePtr->next;
+    std::cout << nodePtr->data << " "; 
+  }
+  std::cout << std::endl;
+
+}
+
+int main () {
+
+  LinkedList List;
+
+  List.insertNode(5);
+  List.insertNode(10); 
+  List.insertNode(15);
+
+  List.printList();
+	
+	return 0;
 }
