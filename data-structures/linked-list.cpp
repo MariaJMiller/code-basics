@@ -10,9 +10,11 @@ struct Node {
 	int data;
 };
 
-void insertNode (int& value) {}
+void insertNode (Node*, int&);
 
-void deleteNode (int& value) {}
+void printList();
+
+void deleteNode (int&);
 
 
 int main () {
@@ -20,7 +22,12 @@ int main () {
 	Node* head = new Node;
 
 	for (int iter = 0; iter < 10; ++iter) {
-		insertNode(iter);
+		insertNode(head, iter);
 	}
+
+	return 0;
+}
+
+void insertNode (Node* head, int& value) {
 
 }
